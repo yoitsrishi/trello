@@ -5,11 +5,17 @@ import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class BoardService {
+export class BoardsService {
   constructor(private http: HttpClient) {}
+
   getBoards(): Observable<BoardInterface[]> {
     const url = environment.apiUrl + '/boards';
     return this.http.get<BoardInterface[]>(url);
+  }
+
+  getBoard(boardId: string): Observable<BoardInterface> {
+    const url = `${environment.apiUrl}/boards/${boardId}`;
+    return this.http.get<BoardInterface>(url);
   }
 
   createBoard(title: string): Observable<BoardInterface> {

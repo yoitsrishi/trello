@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BoardsComponent } from './components/boards/boards.component';
 import { AuthGuardService } from '../auth/services/authGuard.service';
-import { BoardService } from '../shared/services/board.service';
+import { BoardsService } from '../shared/services/board.service';
 import { InlineFormModule } from '../shared/modules/inlineForm/inlineForm.module';
 import { TopBarModule } from '../shared/modules/topBar/topBar.module';
 
@@ -23,6 +23,6 @@ const routes: Routes = [
     InlineFormModule,
     TopBarModule,
   ],
-  providers: [BoardService],
+  providers: [BoardsService],
 })
 export class BoardsModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardInterface } from '../../../shared/types/board.interface';
-import { BoardService } from '../../../shared/services/board.service';
+import { BoardsService } from '../../../shared/services/board.service';
 
 @Component({
   selector: 'boards',
@@ -8,7 +8,7 @@ import { BoardService } from '../../../shared/services/board.service';
 })
 export class BoardsComponent implements OnInit {
   boards: BoardInterface[] = [];
-  constructor(private boardsService: BoardService) {}
+  constructor(private boardsService: BoardsService) {}
 
   ngOnInit(): void {
     this.boardsService.getBoards().subscribe((boards) => {

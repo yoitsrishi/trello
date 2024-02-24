@@ -6,10 +6,11 @@ import { environment } from '../../../environments/environment';
 import { RegisterRequestInterface } from '../types/registerRequest.interface';
 import { currentUser } from './../../../../../server/src/controllers/users';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
+import { SocketService } from '../../shared/services/socket.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private socketService: SocketService) {}
 
   currentUser$ = new BehaviorSubject<CurrentUserInterface | null | undefined>(
     undefined
@@ -48,5 +49,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.currentUser$.next(null);
+    this.socketService.disconnect();
   }
 }
