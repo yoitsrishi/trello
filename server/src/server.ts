@@ -82,9 +82,27 @@ io.use(async (socket: Socket, next) => {
   socket.on(SocketEventsEnum.tasksCreate, (data) => {
     tasksController.createTask(io, socket, data);
   });
+  socket.on(SocketEventsEnum.boardsUpdate, (data) => {
+    boardsController.updateBoard(io, socket, data);
+  });
+  socket.on(SocketEventsEnum.boardsDelete, (data) => {
+    boardsController.deleteBoard(io, socket, data);
+  });
+  socket.on(SocketEventsEnum.columnsDelete, (data) => {
+    columnsController.deleteColumn(io, socket, data);
+  });
+  socket.on(SocketEventsEnum.columnsUpdate, (data) => {
+    columnsController.updateColumn(io, socket, data);
+  });
+  socket.on(SocketEventsEnum.tasksUpdate, (data) => {
+    tasksController.updateTask(io, socket, data);
+  });
+  socket.on(SocketEventsEnum.tasksDelete, (data) => {
+    tasksController.deleteTask(io, socket, data);
+  });
 });
 
-mongoose.connect('mongodb://localhost:27017/trello').then(() => {
+mongoose.connect('mongodb://localhost:27017/eltrello').then(() => {
   console.log('connected to mongodb');
   httpServer.listen(4001, () => {
     console.log(`API is listening on port 4001`);
